@@ -4,7 +4,7 @@ const config = require('../../config');
 
 let sqsClient;
 
-const getSQSClient = () => {
+const getSqsClient = () => {
     if (!sqsClient){
         sqsClient = new AWS.SQS({ 
             region: config.AWS_REGION,
@@ -16,5 +16,5 @@ const getSQSClient = () => {
  }
  
  module.exports = {
-    getSQSClient,
+    getSqsClient,
  }

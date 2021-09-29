@@ -10,7 +10,6 @@ const headers = {
 
 const Handlers = {
     'POST/requests': startNewRequest,
-    'GET/requests': listRequests,
     'GET/request/{requestId}': listRequestsByRequestId,
 }
 

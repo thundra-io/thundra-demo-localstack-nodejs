@@ -50,9 +50,6 @@ functions:
     handler: ./src/handler/app-handler.handler
     events:
       - http:
-          path: /requests
-          method: get
-      - http:
           path: /request/{requestId}
           method: get
       - http:

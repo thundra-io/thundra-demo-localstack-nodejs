@@ -1,8 +1,4 @@
-const Path = require('path');
-
-const URL = require('url');
-
-var urljoin = require('url-join');
+const urljoin = require('url-join');
 
 const axios = require('axios');
 

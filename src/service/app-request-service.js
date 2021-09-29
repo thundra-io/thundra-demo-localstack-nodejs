@@ -1,4 +1,4 @@
-const { getSQSClient } = require('../modules/sqs');
+const { getSqsClient } = require('../modules/sqs');
 const { getDynamoClient } = require('../modules/dynamodb');
 const { getSnsClient } = require('../modules/sns');
 const { getS3Client } = require('../modules/s3');
@@ -41,14 +41,13 @@ const sendAppRequestNotification = async (requestId) => {
 
 const startNewRequest = async () => {
     
-    const sqsClient = await getSQSClient();
+    const sqsClient = await getSqsClient();
     
     const requestId = generateShortUuid();
     
-    let params = {
+    const params = {
         MessageBody: JSON.stringify({ requestId }),
-        QueueUrl: config.REQUEST_QUEUE_URL,
-        // `http://${process.env.LOCALSTACK_HOSTNAME}:4566/000000000000/thundra-demo-localstack-request-queue-local` 
+        QueueUrl: config.REQUEST_QUEUE_URL, 
     };
     
     await (sqsClient.sendMessage(params).promise());
@@ -100,30 +99,6 @@ const listRequestsByRequestId = async ({ pathParameters }) => {
     return items;
 }
 
-const listRequests = async () => {
-    
-    const dynamodbClient = await getDynamoClient();
-    
-    const params = {
-        TableName: config.APP_REQUESTS_TABLE_NAME,
-    };
-    
-    const result = await (dynamodbClient.scan(params).promise());
-    
-    const items = result['Items'].map((x) => {
-        Object.keys(x).forEach((attr) => {
-            if ('N' in x[attr]) x[attr] = parseFloat(x[attr].N);
-            else if ('S' in x[attr]) x[attr] = x[attr].S;
-            else x[attr] = x[attr][Object.keys(x[attr])[0]];
-        });
-        return x;
-    });
-    
-    return {
-        result: items,
-    }
-}
-
 const processRequest = async (requestId) => {
     
     await delay(5000);
@@ -154,7 +129,6 @@ const archiveRequest = async (requestId) => {
 
 module.exports = {
     startNewRequest,
-    listRequests,
     listRequestsByRequestId,
     processRequest,
     archiveRequest,
