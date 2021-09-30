@@ -15,9 +15,9 @@ const generateShortUuid = () => {
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-const executeCommand = async (cmdStr) => {
+const executeCommand = async (cmdStr, options = {}) => {
 
-    return (await exec(cmdStr));
+    return (await exec(cmdStr, options));
 }
 
 module.exports = {

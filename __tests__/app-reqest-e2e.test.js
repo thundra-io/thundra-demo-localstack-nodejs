@@ -6,6 +6,8 @@ const { executeCommand } = require('../src/utils');
 
 const { APP_REQUEST_ITEM_STATUS } = require('../src/constants');
 
+const { dynamoDbChaos } = require('./config/chaos');
+
 describe('App Request E2E', function () {
     
     jest.setTimeout(300 * 1000);
@@ -13,8 +15,15 @@ describe('App Request E2E', function () {
     let apiGwUrl;
 
     beforeAll(async () => {
-        
-        await executeCommand('make deploy');
+
+        await executeCommand(
+            'make deploy',
+            { 
+                env: {
+                    THUNDRA_DYNAMODB_CHAOS: JSON.stringify(dynamoDbChaos),
+                }
+            }
+        );
 
         const resultRaw = await executeCommand('awslocal apigateway get-rest-apis');
         if (resultRaw && resultRaw.stdout){
@@ -75,7 +84,7 @@ describe('App Request E2E', function () {
             )
         }, 
         60,
-        1);
+        5);
 
         expect(true).toBe(true);
     }); 

@@ -36,7 +36,7 @@ provider:
     REQUEST_TOPIC_ARN:
       Ref: requestTopic
     ARCHIVE_BUCKET_NAME: ${self:custom.bucketName}
-    THUNDRA_APIKEY: 7fe9ea2e-fd4a-4862-aa30-33e7ed49833e
+    THUNDRA_APIKEY: ${env:THUNDRA_APIKEY}
     THUNDRA_AGENT_REPORT_REST_BASEURL: ${env:THUNDRA_AGENT_REPORT_REST_BASEURL}
 
 package:
@@ -68,6 +68,8 @@ functions:
           arn:
             Fn::GetAtt: [requestTopic, Arn]
           topicName: ${self:custom.topicName}
+    environment:
+      THUNDRA_AGENT_TRACE_SPAN_LISTENERCONFIG: ${env:THUNDRA_DYNAMODB_CHAOS}
 
 resources:
   Resources:
