@@ -21,6 +21,7 @@ describe('App Request E2E', function () {
             { 
                 env: {
                     THUNDRA_DYNAMODB_CHAOS: JSON.stringify(dynamoDbChaos),
+                    ...process.env
                 }
             }
         );
@@ -83,7 +84,7 @@ describe('App Request E2E', function () {
                 ])
             )
         }, 
-        60,
+        40,
         5);
 
         expect(true).toBe(true);
