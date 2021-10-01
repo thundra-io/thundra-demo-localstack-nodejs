@@ -11,14 +11,11 @@ const dynamoDbChaos = {
                 counter: 0
             }
         },
-        spanFilterer: {
-            all: false,
-            spanFilters: [
-                {
-                    className: 'AWS-DynamoDB'
-                }
-            ]
-        }
+        filters: [
+            {
+                className: 'AWS-DynamoDB'
+            }
+        ]
     }
 }
 

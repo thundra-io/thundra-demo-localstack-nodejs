@@ -84,7 +84,7 @@ describe('App Request E2E', function () {
                 ])
             )
         }, 
-        40,
+        30,
         5);
 
         expect(true).toBe(true);
