@@ -70,6 +70,7 @@ functions:
           topicName: ${self:custom.topicName}
     environment:
       THUNDRA_AGENT_TRACE_SPAN_LISTENERCONFIG: ${env:THUNDRA_DYNAMODB_CHAOS}
+      THUNDRA_AGENT_TRACE_INSTRUMENT_TRACEABLECONFIG: ${env:THUNDRA_AGENT_TRACE_INSTRUMENT_TRACEABLECONFIG}
 
 resources:
   Resources:

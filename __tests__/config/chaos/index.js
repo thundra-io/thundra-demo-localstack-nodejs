@@ -4,16 +4,14 @@ const dynamoDbChaos = {
         listener: {
             type: 'ErrorInjectorSpanListener',
             config: {
-                injectCountFreq: 1,
-                injectOnFinish: false,
                 errorType: 'ChaosError',
                 errorMessage: 'DynamoDB Chaos Injected!',
-                counter: 0
+                injectPercentage: 100,
             }
         },
         filters: [
             {
-                className: 'AWS-DynamoDB'
+                className: 'AWS-DynamoDB',
             }
         ]
     }

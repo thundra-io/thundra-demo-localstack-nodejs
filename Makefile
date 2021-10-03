@@ -7,7 +7,7 @@ export THUNDRA_APIKEY = 7fe9ea2e-fd4a-4862-aa30-33e7ed49833e
 export THUNDRA_AGENT_TEST_PROJECT_ID = 7f9492de-adc8-4bc3-a602-9abfd3fadbaa
 export THUNDRA_AGENT_REPORT_REST_BASEURL = https://collector.thundra.us/v1
 export THUNDRA_AGENT_APPLICATION_NAME = thundra-demo-localstack-nodejs
-# export THUNDRA_AGENT_TRACE_INSTRUMENT_TRACEABLECONFIG = io.thundra.demo.localstack.*.*[traceLineByLine=true]
+export THUNDRA_AGENT_TRACE_INSTRUMENT_TRACEABLECONFIG = src.handler.*.*[traceLineByLine=true]
 
 usage:              ## Show this help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
