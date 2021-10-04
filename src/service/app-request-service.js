@@ -16,16 +16,27 @@ const addAppRequest = async (requestId, status) => {
     
     const dynamodbClient = await getDynamoClient();
     
-    const id = generateShortUuid();
-    
     await (dynamodbClient.putItem({
         TableName: config.APP_REQUESTS_TABLE_NAME,
         Item: {
-            id: { S: id },
             requestId: { S: `${requestId}` },
             timestamp: { S: `${new Date().getTime()}` },
             status: { S: `${status}` },
         }
+    }).promise());
+}
+
+const getAppRequest = async (requestId) => {
+
+    const dynamodbClient = await getDynamoClient();
+
+    return await (dynamodbClient.getItem({
+        TableName: config.APP_REQUESTS_TABLE_NAME,
+        Key: { 
+            requestId: {
+                S: `${requestId}`
+            }
+        },
     }).promise());
 }
 
@@ -69,43 +80,30 @@ const listRequestsByRequestId = async ({ pathParameters }) => {
     if (!requestId) {
         return;
     }
+
+    const result = await getAppRequest(requestId);
+
+    const item = result.Item;
+    if (!item) {
+        return {};
+    }
     
-    const dynamodbClient = await getDynamoClient();
-    
-    const params = {
-        FilterExpression: '#requestId = :requestId',
-        ExpressionAttributeNames: {
-            '#requestId': 'requestId',
-        },
-        ExpressionAttributeValues: {
-            ':requestId': {
-                S: `${requestId}`
-            },
-        },
-        TableName: config.APP_REQUESTS_TABLE_NAME,
-    };
-    
-    const result = await (dynamodbClient.scan(params).promise());
-    
-    const items = result['Items'].map((x) => {
-        Object.keys(x).forEach((attr) => {
-            if ('N' in x[attr]) x[attr] = parseFloat(x[attr].N);
-            else if ('S' in x[attr]) x[attr] = x[attr].S;
-            else x[attr] = x[attr][Object.keys(x[attr])[0]];
-        });
-        return x;
+    Object.keys(result.Item).forEach((attr) => {
+        if ('N' in item[attr]) item[attr] = parseFloat(item[attr].N);
+        else if ('S' in item[attr]) item[attr] = item[attr].S;
+        else x[attr] = item[attr][Object.keys(item[attr])[0]];
     });
     
-    return items;
+    return item;
 }
 
 const processRequest = async (requestId) => {
     
+    await delay(4000);
+    await addAppRequest(requestId, APP_REQUEST_ITEM_STATUS.PROCESSING);
+
     await delay(5000);
     await sendAppRequestNotification(requestId);
-    await delay(4000);
-    
-    await addAppRequest(requestId, APP_REQUEST_ITEM_STATUS.PROCESSING)
 }
 
 const archiveRequest = async (requestId) => {

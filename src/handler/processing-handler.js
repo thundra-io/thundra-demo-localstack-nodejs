@@ -5,7 +5,12 @@ const handler = async (event) => {
     const records = event.Records;
     for (let i = 0; i < records.length; i++) {
         
-        const { requestId } = JSON.parse(records[i].body);
+        const record = JSON.parse(records[i].body);
+        if (!record) {
+            continue;
+        }
+        
+        const requestId = record.requestId;
         await processRequest(requestId);
     }
 }

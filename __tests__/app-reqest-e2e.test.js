@@ -70,19 +70,7 @@ describe('App Request E2E', function () {
             expect(createRequestResult.status).toBe(200);
             expect(createRequestResult.data).toBeTruthy()
 
-            expect(getRequestResult.data).toEqual(          
-                expect.arrayContaining([      
-                  expect.objectContaining({   
-                    status: APP_REQUEST_ITEM_STATUS.QUEUED               
-                  }),
-                  expect.objectContaining({   
-                    status: APP_REQUEST_ITEM_STATUS.PROCESSING               
-                  }),
-                  expect.objectContaining({   
-                    status: APP_REQUEST_ITEM_STATUS.FINISHED               
-                  })
-                ])
-            )
+            expect(getRequestResult.data.status).toEqual(APP_REQUEST_ITEM_STATUS.FINISHED);
         }, 
         30,
         5);
