@@ -1,6 +1,5 @@
 const { 
     startNewRequest,
-    listRequests,
     listRequestsByRequestId,
 } = require('../service/app-request-service');
 

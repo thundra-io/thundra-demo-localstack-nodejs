@@ -91,7 +91,7 @@ const listRequestsByRequestId = async ({ pathParameters }) => {
     Object.keys(result.Item).forEach((attr) => {
         if ('N' in item[attr]) item[attr] = parseFloat(item[attr].N);
         else if ('S' in item[attr]) item[attr] = item[attr].S;
-        else x[attr] = item[attr][Object.keys(item[attr])[0]];
+        else item[attr] = item[attr][Object.keys(item[attr])[0]];
     });
     
     return item;
