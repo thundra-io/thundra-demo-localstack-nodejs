@@ -66,9 +66,9 @@ describe('App Request E2E', function () {
 
             const getRequestResult = await axios.get(getRequestUrl);
 
-            expect(createRequestResult).toBeTruthy();
-            expect(createRequestResult.status).toBe(200);
-            expect(createRequestResult.data).toBeTruthy()
+            expect(getRequestResult).toBeTruthy();
+            expect(getRequestResult.status).toBe(200);
+            expect(getRequestResult.data).toBeTruthy()
 
             expect(getRequestResult.data.status).toEqual(APP_REQUEST_ITEM_STATUS.FINISHED);
         }, 
