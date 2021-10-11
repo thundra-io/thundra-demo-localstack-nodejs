@@ -3,9 +3,8 @@ export AWS_ACCESS_KEY_ID ?= test
 export AWS_SECRET_ACCESS_KEY ?= test
 export AWS_DEFAULT_REGION ?= us-east-1
 export START_WEB ?= 1
-export THUNDRA_APIKEY = 7fe9ea2e-fd4a-4862-aa30-33e7ed49833e
-export THUNDRA_AGENT_TEST_PROJECT_ID = 7f9492de-adc8-4bc3-a602-9abfd3fadbaa
-export THUNDRA_AGENT_REPORT_REST_BASEURL = https://collector.thundra.us/v1
+export THUNDRA_APIKEY = <YOUR-THUNDRA-API-KEY-HERE>
+export THUNDRA_AGENT_TEST_PROJECT_ID = <YOUR-THUNDRA-PROJECT-ID-HERE>
 export THUNDRA_AGENT_APPLICATION_NAME = thundra-demo-localstack-nodejs
 export THUNDRA_AGENT_TRACE_INSTRUMENT_TRACEABLECONFIG = src.handler.*.*[traceLineByLine=true]
 
