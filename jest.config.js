@@ -4,7 +4,7 @@ const config = {
     name: 'jest-thundra-tryer',
     verbose: true,
     testRunner: 'jest-circus/runner',
-    testEnvironment: '@thundra/core/dist/bootstrap/foresight/jest/JestEnvironmentNode.js'
+    testEnvironment: '@thundra/core/dist/bootstrap/foresight/jest/JestDefaultEnvironment.js'
 };
 
 module.exports = config;
