@@ -1,0 +1,9 @@
+const APP_REQUEST_ITEM_STATUS = {
+    QUEUED: 'QUEUED',
+    PROCESSING: 'PROCESSING',
+    FINISHED: 'FINISHED',
+};
+
+module.exports = {
+    APP_REQUEST_ITEM_STATUS,
+}

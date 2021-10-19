@@ -1,0 +1,37 @@
+{
+  "name": "thundra-demo-localstack-nodejs",
+  "version": "1.0.0",
+  "description": "Simple Node.js demo application deployed to LocalStack and monitored/traced/debugged by Thundra",
+  "main": "index.js",
+  "scripts": {
+    "build": "make build",
+    "test": "jest",
+    "start": "make start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thundra-io/thundra-demo-localstack-nodejs.git"
+  },
+  "keywords": [],
+  "author": "bcaglayan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thundra-io/thundra-demo-localstack-nodejs/issues"
+  },
+  "homepage": "https://github.com/thundra-io/thundra-demo-localstack-nodejs#readme",
+  "dependencies": {
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@thundra/core": "^2.13.2",
+    "aws-sdk": "^2.764.0",
+    "axios": "^0.21.1",
+    "eslint": "^6.8.0",
+    "jest": "^25.0.0",
+    "jest-circus": "^25.0.0",
+    "serverless": "^2.4.0",
+    "serverless-deployment-bucket": "^1.1.2",
+    "serverless-localstack": "^0.4.35",
+    "url-join": "^4.0.1"
+  }
+}
