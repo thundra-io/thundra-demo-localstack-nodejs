@@ -23,7 +23,7 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@thundra/core": "^2.13.2",
+    "@thundra/core": "^2.13.5",
     "aws-sdk": "^2.764.0",
     "axios": "^0.21.1",
     "eslint": "^6.8.0",
